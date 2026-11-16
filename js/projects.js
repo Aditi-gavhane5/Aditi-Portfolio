@@ -2,7 +2,7 @@ window.portfolioProjects = [
   {
     name: "CompareX", category: "PRICE COMPARISON",
     description: "A web platform for bringing product prices from multiple online marketplaces together so shoppers can compare options and spot better deals.",
-    image: "assets/projects/comparex.png", githubUrl: "REPLACE_WITH_COMPAREX_GITHUB_URL", skills: ["HTML", "CSS", "JavaScript", "Python", "Requests", "BeautifulSoup"],
+    image: "assets/projects/comparex.png", githubUrl: "https://github.com/Aditi-gavhane5/CompareX", skills: ["HTML", "CSS", "JavaScript", "Python", "Requests", "BeautifulSoup"],
     intro: "Compare product listings across marketplaces, track prices, and keep interesting finds in a wishlist.",
     detail: {
       overview: "CompareX brings product-price information from different online marketplaces into one place. It is intended to make the search for a suitable price less fragmented.",
@@ -30,7 +30,7 @@ window.portfolioProjects = [
   {
     name: "EchoAI – Personal AI Assistant", category: "AI · DOCUMENT Q&A",
     description: "A web-based personal assistant for conversational questions and document-based answers, built with Python, Flask, and the Google Gemini API.",
-    image: "assets/projects/echoai.png", githubUrl: "REPLACE_WITH_ECHOAI_GITHUB_URL", skills: ["Python", "Flask", "Google Gemini API", "HTML", "CSS", "JavaScript", "JSON"],
+    image: "assets/projects/echoai.png", githubUrl: "https://github.com/Aditi-gavhane5/EchoAI", skills: ["Python", "Flask", "Google Gemini API", "HTML", "CSS", "JavaScript", "JSON"],
     intro: "Chat with an AI assistant, keep conversational context, and ask questions about uploaded documents.",
     detail: {
       overview: "EchoAI is a web-based personal AI assistant that combines conversational interaction with the ability to ask questions about user-provided documents.",
@@ -44,7 +44,7 @@ window.portfolioProjects = [
   {
     name: "EmberWatch", category: "WILDFIRE MONITORING",
     description: "A wildfire tracking and visualization application that presents disaster-related information through an interactive interface and map-based view.",
-    image: "assets/projects/emberwatch.png", githubUrl: "REPLACE_WITH_EMBERWATCH_GITHUB_URL", skills: ["HTML", "CSS", "JavaScript", "APIs", "Google Maps"],
+    image: "assets/projects/emberwatch.png", githubUrl: "https://github.com/Aditi-gavhane5/EarthWatch", skills: ["HTML", "CSS", "JavaScript", "APIs", "Google Maps"],
     intro: "Explore wildfire-related information retrieved from external services in a visual, map-oriented experience.",
     detail: {
       overview: "EmberWatch is a wildfire tracking and visualization application designed to make relevant disaster information easier to explore.",
@@ -58,7 +58,7 @@ window.portfolioProjects = [
   {
     name: "Compressify – File Compression Platform", category: "IMAGE COMPRESSION · BROWSER TOOL",
     description: "A browser-based image compression experience whose supplied preview presents original and compressed images, a quality control, and JPG, PNG, and WEBP formats.",
-    image: "assets/projects/compressify.jpeg", githubUrl: "REPLACE_WITH_COMPRESSIFY_GITHUB_URL", skills: ["JPG", "PNG", "WEBP", "Runs in your browser"],
+    image: "assets/projects/compressify.jpeg", githubUrl: "https://github.com/Aditi-gavhane5/Compressify", skills: ["JPG", "PNG", "WEBP", "Runs in your browser"],
     intro: "A clean image-optimization interface focused on reducing file size while retaining visual quality.",
     detail: {
       overview: "Compressify is presented in the supplied application screenshot as a free, private image compression tool that runs in the browser. It addresses the practical need to reduce image file sizes for storage and sharing.",
