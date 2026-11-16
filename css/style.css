@@ -340,3 +340,18 @@ a.github-button:hover{transform:translateY(-1px);border-color:#d8c5e4;box-shadow
   .lightbox-arrow{width:44px;height:44px}
   #lightboxPrev{left:2px}#lightboxNext{right:2px}
 }
+
+/* New profile portrait uses a top-aligned cover crop to keep the face centered. */
+.avatar img.profile-photo-new{object-fit:cover;object-position:center 0%}
+.nav-glyph{font-style:normal}
+.mobile-nav-icon{display:none}
+
+/* Phone bottom navigation: keep all six icon-label pairs visible in a 3 × 2 grid. */
+@media (max-width:600px){
+  body{padding-bottom:calc(140px + env(safe-area-inset-bottom, 0px))}
+  .bottom-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:minmax(50px,auto);gap:3px 4px;padding:6px;overflow:visible;overscroll-behavior:initial}
+  .bottom-nav .nav-link{display:flex;flex:initial;width:100%;min-width:0;min-height:50px;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px 2px;border-radius:14px;white-space:nowrap}
+  .bottom-nav .nav-glyph{display:none}
+  .bottom-nav .mobile-nav-icon{display:block;flex:0 0 18px;width:18px;height:18px;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none}
+  .bottom-nav .nav-label{display:block!important;font-size:11px;line-height:1.1;font-weight:700;white-space:nowrap}
+}
