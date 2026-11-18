@@ -68,6 +68,27 @@ window.portfolioProjects = [
       implementation: "The provided material for Compressify is a screenshot only; no source code or technical documentation was included. The screenshot supports the visible interface and its stated browser-based workflow, formats, size labels, and quality control, but it does not establish the implementation language, libraries, compression algorithm, upload flow, or download behavior. Those technical details are therefore left open pending source code or documentation.",
       contribution: "I created the Compressify project experience represented by the supplied preview. The current portfolio entry documents the interface and stated capabilities visible in that screenshot without making unsupported claims about its internals."
     }
+  },
+  {
+    name: "Banking Customer Churn & Risk Analytics", category: "DATA ANALYTICS · BANKING · POWER BI",
+    description: "Analyzed banking customer data using Python and Power BI to uncover churn patterns, evaluate customer risk, explore customer segmentation, and identify customer retention opportunities.",
+    image: "assets/projects/banking-churn-summary.png", githubUrl: "https://github.com/Aditi-gavhane5/Banking-Customer-Churn-", skills: ["Python", "Pandas", "NumPy", "Matplotlib", "Power BI", "DAX", "Excel"],
+    intro: "Analyzed banking customer data using Python and Power BI to uncover churn patterns, evaluate customer risk, explore customer segmentation, and identify customer retention opportunities.",
+    detail: {
+      overview: "This project examines customer churn and risk signals in a banking customer dataset. Python and Power BI were used to prepare and analyze customer records, explore churn across customer segments, and present findings through interactive dashboards.",
+      problem: "Banks need to identify customers who may leave, understand the factors associated with churn, and recognize customer groups that may need attention. Clear analysis of customer demographics, tenure, engagement, loyalty, and risk helps teams focus retention efforts.",
+      objectives: ["Analyze overall customer churn.", "Identify high-churn customer segments.", "Understand the relationship between demographics, tenure, engagement, and churn.", "Identify high-risk customers.", "Evaluate customer loyalty and retention patterns."],
+      features: ["Customer churn analysis.", "Customer risk classification.", "Age-based customer segmentation.", "Loyalty and engagement analysis.", "Customer cluster insights.", "Interactive Power BI dashboards."],
+      implementation: "Python and Pandas were used for data cleaning, preprocessing, feature engineering, and exploratory analysis, with NumPy and Matplotlib supporting the analysis workflow. The prepared analysis was presented in Power BI dashboards, with DAX calculations for key performance indicators and interactive views of churn, risk, and customer segments.",
+      dashboardImages: [
+        { src: "assets/projects/banking-churn-summary.png", caption: "Churn Summary", alt: "Banking customer churn summary dashboard showing customer totals, churn rate, segment and age churn, quarterly trend, and loyalty." },
+        { src: "assets/projects/banking-churn-risk-analysis.png", caption: "Churn & Risk Analysis", alt: "Banking churn and risk dashboard showing high-risk customers, risk category, customer tenure, engagement, and digital usage." },
+        { src: "assets/projects/banking-segmentation-cluster-insights.png", caption: "Segmentation & Cluster Insights", alt: "Banking customer segmentation dashboard showing loyalty, loyal-but-at-risk customers, province, and occupation." }
+      ],
+      findings: ["Mass customer segment: approximately 40% churn.", "Younger customers: approximately 22% churn.", "High-risk customers: approximately 68% churn.", "Low-risk customers: approximately 0.5% churn.", "Bronze loyalty customers account for approximately 75.7% of churn.", "Digital users represent approximately 7.7% of churned customers.", "Approximately 34K customers are classified as Loyal but At-Risk."],
+      recommendations: ["Develop targeted retention strategies.", "Improve customer engagement.", "Optimize loyalty benefits.", "Monitor high-risk customers.", "Encourage digital banking adoption.", "Prioritize Loyal but At-Risk customers."],
+      contribution: "My contribution included preparing and cleaning the data, conducting exploratory analysis, engineering features, developing the Power BI dashboards, and translating the analytical findings into business recommendations."
+    }
   }
 ];
 
@@ -83,6 +104,11 @@ document.addEventListener("DOMContentLoaded", () => {
       ? `<button class="github-button" type="button" disabled aria-disabled="true" title="Replace this project's repository placeholder in js/projects.js">${githubIcon}<span>View on GitHub</span></button>`
       : `<a class="github-button" href="${repository}" target="_blank" rel="noopener noreferrer">${githubIcon}<span>View on GitHub</span></a>`;
   };
+  const dashboardGallery = images => images?.length ? `
+    <h4>Dashboard Showcase</h4>
+    <div class="project-dashboard-gallery">
+      ${images.map(image => `<button class="dashboard-gallery-item" type="button" data-dashboard-image data-src="${image.src}" data-alt="${image.alt}" data-caption="${image.caption}" aria-label="Enlarge ${image.caption} dashboard"><img src="${image.src}" alt="" loading="lazy"><span>${image.caption}</span></button>`).join("")}
+    </div>` : "";
   target.innerHTML = window.portfolioProjects.map((p, i) => `
     <article class="project-card">
       <div class="project-visual ${p.image ? 'has-project-image' : ''}" data-gallery="${i}" role="button" tabindex="0" aria-label="Open ${p.name} preview">
@@ -100,6 +126,9 @@ document.addEventListener("DOMContentLoaded", () => {
           <h4>Objectives</h4>${list(p.detail.objectives)}
           <h4>Key Features</h4>${list(p.detail.features)}
           <h4>Technical Implementation</h4><p>${p.detail.implementation}</p>
+          ${dashboardGallery(p.detail.dashboardImages)}
+          ${p.detail.findings?.length ? `<h4>Key Findings</h4>${list(p.detail.findings)}<p class="project-findings-note">These are documented findings from this project dashboard, not independently verified industry statistics.</p>` : ""}
+          ${p.detail.recommendations?.length ? `<h4>Business Recommendations</h4>${list(p.detail.recommendations)}` : ""}
           <h4>Technologies Used</h4><p>${p.skills.join(" · ")}</p>
           <h4>My Contribution</h4><p>${p.detail.contribution}</p>
         </div>

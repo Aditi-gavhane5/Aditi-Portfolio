@@ -314,6 +314,16 @@ a.github-button:hover{transform:translateY(-1px);border-color:#d8c5e4;box-shadow
   .mobile-menu-close{width:44px;height:44px;line-height:1}
 }
 
+/* Compact dashboard thumbnails use the same rounded, pastel project styling. */
+.project-dashboard-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:8px 0 14px;width:100%}
+.dashboard-gallery-item{min-width:0;padding:5px;border:1px solid #e7dfed;border-radius:12px;background:#fff;text-align:left;color:#766984;cursor:zoom-in;transition:transform .2s,box-shadow .2s,border-color .2s}
+.dashboard-gallery-item:hover{transform:translateY(-2px);border-color:#d8c5e4;box-shadow:0 6px 16px #a68bd022}
+.dashboard-gallery-item:focus-visible{outline:3px solid #9c83d5;outline-offset:2px}
+.dashboard-gallery-item img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:7px}
+.dashboard-gallery-item span{display:block;margin:5px 2px 2px;font-size:9px;font-weight:700;line-height:1.35}
+.project-findings-note{font-size:10px!important;color:#8e879d;margin-top:-8px!important}
+@media(max-width:460px){.project-dashboard-gallery{gap:5px}.dashboard-gallery-item{padding:3px;border-radius:9px}.dashboard-gallery-item span{font-size:8px}}
+
 @media (max-width:360px){
   .portfolio-shell{padding-inline:9px}
   .panel{padding-inline:13px}

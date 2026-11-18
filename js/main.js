@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentProject = 0;
   let currentGallery = [];
   let currentGalleryTitle = "";
+  let currentGalleryMode = "project";
 
   function activateSection(id, updateHash = true) {
     if (!sections.some(s => s.id === id)) id = "about";
@@ -41,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function showProject(index) {
     const projects = window.portfolioProjects || [];
     if (!projects.length) return;
+    currentGalleryMode = "project";
     currentProject = (index + projects.length) % projects.length;
     const project = projects[currentProject];
     currentGallery = projects.filter(p => p.image).map(p => ({src:p.image, alt:`${p.name} project preview`}));
@@ -73,8 +75,29 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!gallery) return;
     currentGalleryTitle = gallery.dataset.journeyGalleryContent === "navy" ? "Indian Navy Hornpipe Dance" : "TAPAS – Creatives Head";
     currentGallery = [...gallery.querySelectorAll("[data-journey-image]")].map(image => ({src:image.dataset.src,alt:image.dataset.alt}));
+    currentGalleryMode = "journey";
     const index = [...gallery.querySelectorAll("[data-journey-image]")].indexOf(button);
     showJourneyImage(index);
+    lightbox.classList.add("open"); lightbox.setAttribute("aria-hidden","false");
+  }
+  function showDashboardGalleryImage(index) {
+    if (!currentGallery.length) return;
+    currentProject = (index + currentGallery.length) % currentGallery.length;
+    const image = currentGallery[currentProject];
+    lightboxCaption.textContent = image.caption;
+    lightboxNote.textContent = `${currentGalleryTitle} · Image ${currentProject + 1} of ${currentGallery.length} — use arrows or keyboard to browse`;
+    lightboxImage.src = image.src;
+    lightboxImage.alt = image.alt;
+    lightboxImage.classList.add("visible");
+  }
+  function openDashboardGalleryImage(button) {
+    const card = button.closest(".project-card");
+    if (!card) return;
+    currentGalleryTitle = card.querySelector("h3")?.textContent || "Project dashboard";
+    currentGallery = [...card.querySelectorAll("[data-dashboard-image]")].map(image => ({src:image.dataset.src,alt:image.dataset.alt,caption:image.dataset.caption}));
+    currentGalleryMode = "dashboard";
+    const index = [...card.querySelectorAll("[data-dashboard-image]")].indexOf(button);
+    showDashboardGalleryImage(index);
     lightbox.classList.add("open"); lightbox.setAttribute("aria-hidden","false");
   }
   function closeLightbox() { lightbox.classList.remove("open"); lightbox.setAttribute("aria-hidden","true"); }
@@ -90,7 +113,8 @@ document.addEventListener("DOMContentLoaded", () => {
     profilePhotoTrigger.focus({preventScroll:true});
   }
   function moveLightbox(delta) {
-    if (currentGalleryTitle === "Indian Navy Hornpipe Dance" || currentGalleryTitle === "TAPAS – Creatives Head") showJourneyImage(currentProject + delta);
+    if (currentGalleryMode === "journey") showJourneyImage(currentProject + delta);
+    else if (currentGalleryMode === "dashboard") showDashboardGalleryImage(currentProject + delta);
     else showProject(currentProject + delta);
   }
 
@@ -137,6 +161,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const journeyImage = e.target.closest("[data-journey-image]");
     if (journeyImage) openJourneyImage(journeyImage);
+    const dashboardImage = e.target.closest("[data-dashboard-image]");
+    if (dashboardImage) openDashboardGalleryImage(dashboardImage);
     const expandButton = e.target.closest("[data-expand]");
     if (expandButton) {
       const details = document.getElementById(expandButton.getAttribute("aria-controls"));
