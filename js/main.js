@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const lightboxCaption = document.getElementById("lightboxCaption");
   const lightboxImage = document.getElementById("lightboxImage");
   const lightboxNote = document.getElementById("lightboxNote");
+  const profilePhotoTrigger = document.getElementById("profilePhotoTrigger");
+  const profileLightbox = document.getElementById("profileLightbox");
+  const profileLightboxClose = document.getElementById("profileLightboxClose");
   let currentProject = 0;
   let currentGallery = [];
   let currentGalleryTitle = "";
@@ -75,6 +78,17 @@ document.addEventListener("DOMContentLoaded", () => {
     lightbox.classList.add("open"); lightbox.setAttribute("aria-hidden","false");
   }
   function closeLightbox() { lightbox.classList.remove("open"); lightbox.setAttribute("aria-hidden","true"); }
+  function openProfileLightbox() {
+    profileLightbox.classList.add("open");
+    profileLightbox.setAttribute("aria-hidden","false");
+    profileLightboxClose.focus();
+  }
+  function closeProfileLightbox() {
+    if (!profileLightbox.classList.contains("open")) return;
+    profileLightbox.classList.remove("open");
+    profileLightbox.setAttribute("aria-hidden","true");
+    profilePhotoTrigger.focus({preventScroll:true});
+  }
   function moveLightbox(delta) {
     if (currentGalleryTitle === "Indian Navy Hornpipe Dance" || currentGalleryTitle === "TAPAS – Creatives Head") showJourneyImage(currentProject + delta);
     else showProject(currentProject + delta);
@@ -146,8 +160,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("lightboxPrev").addEventListener("click", () => moveLightbox(-1));
   document.getElementById("lightboxNext").addEventListener("click", () => moveLightbox(1));
   lightbox.addEventListener("click", e => { if (e.target === lightbox) closeLightbox(); });
+  profilePhotoTrigger.addEventListener("click", openProfileLightbox);
+  profileLightboxClose.addEventListener("click", closeProfileLightbox);
+  profileLightbox.addEventListener("click", e => { if (e.target === profileLightbox) closeProfileLightbox(); });
   window.addEventListener("keydown", e => {
-    if (e.key === "Escape") { closeLightbox(); closeMobileMenu(); }
+    if (e.key === "Escape") { closeLightbox(); closeProfileLightbox(); closeMobileMenu(); }
     if (lightbox.classList.contains("open") && e.key === "ArrowLeft") moveLightbox(-1);
     if (lightbox.classList.contains("open") && e.key === "ArrowRight") moveLightbox(1);
   });
